@@ -41,6 +41,7 @@ my $app = sub {
 		);
 		my $user = JSON::decode_json($decodedToken);
 		$response->code(200);
+		$response->body();
 		$response->content_type('application/json');
 		my $response_json = {
 			status => "200",

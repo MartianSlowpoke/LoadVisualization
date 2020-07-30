@@ -2,7 +2,6 @@ package DAO::DeveloperDAO;
 
 use DBI;
 use Data::Dumper;
-use feature qw( say );
 
 my $SQL_GET_ALL = "SELECT id, name, team, routine FROM Developer;";
 my $SQL_GET_BY_ID =

@@ -1,4 +1,4 @@
-package Model::Developer;
+package Model::Team;
 
 use Data::Dumper;
 
@@ -6,10 +6,9 @@ sub new {
 	my $class = shift @_;
 	my %map   = @_;
 	my $self  = {
-		id      => $map{id},
-		name    => $map{name},
-		team    => $map{team},
-		routine => $map{routine}
+		id   => $map{id},
+		name => $map{name},
+		lead => $map{lead}
 	};
 	bless $self, $class;
 	return $self;
@@ -20,24 +19,24 @@ sub setId {
 	$self->{id} = $id;
 }
 
+sub getId {
+	my $self = shift @_;
+	return $self->{id};
+}
+
 sub getName {
 	my $self = shift @_;
 	return $self->{name};
 }
 
-sub getTeam {
+sub getLead {
 	my $self = shift @_;
-	return $self->{team};
-}
-
-sub getRoutine {
-	my $self = shift @_;
-	return $self->{routine};
+	return $self->{lead};
 }
 
 sub toString {
 	my $self = shift @_;
-	return Data::Dumper::Dumper($self);
+	return Data::Dumpler::Dumper($self);
 }
 
 1;
