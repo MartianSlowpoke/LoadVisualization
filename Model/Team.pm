@@ -36,7 +36,7 @@ sub getLead {
 
 sub toString {
 	my $self = shift @_;
-	return Data::Dumpler::Dumper($self);
+	return Data::Dumper::Dumper($self);
 }
 
 1;

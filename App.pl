@@ -3,13 +3,15 @@ use warnings;
 
 use lib ".";
 
-#use DAO::DeveloperDAO;
-#use Model::Developer;
 use Path::Dispatcher;
 use Path::Dispatcher::Match;
-
 use Plack::Request;
 use Plack::Response;
+use DAO::DeveloperDAO;
+use Model::User;
+use Model::Team;
+use Model::Developer;
+
 #use Controller::DeveloperController;
 use feature qw( say );    # Requires Perl 5.10.
 
@@ -28,10 +30,21 @@ my $signature_key = "secret";
 # test token is eyJhbGciOiJIUzI1NiJ9.eyJ1c2VybmFtZSI6IlNrb3JpeSBTZXJnZXkiLCJyb2xlIjoiYmFjay1lbmQgZGV2ZWxvcGVyIiwiZXhwaXJlc19kYXRldGltZSI6IjI2LzAzLzIwMDEifQ.KNFda0ffJRbHJ8Xe7qBTVeQa4wZNCLH_4spiVBmHTiA
 # {"username":"Skoriy Sergey","role":"back-end developer","expires_datetime":"26/03/2001"}
 
+my $devDAO = DAO::DeveloperDAO->new(
+	{
+		host     => "localhost",
+		port     => "3306",
+		user     => "root",
+		password => "1111"
+	}
+);
+say "first coderef = " . \$devDAO;
+
 my $app = sub {
 	my $env      = shift @_;
 	my $request  = Plack::Request->new($env);
 	my $response = Plack::Response->new();
+	say "coderef = " . \$devDAO;
 	try {
 		my $encodedToken = $request->header('Authorization');
 		my $decodedToken = Crypt::JWT::decode_jwt(
