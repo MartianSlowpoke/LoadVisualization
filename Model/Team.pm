@@ -6,9 +6,9 @@ sub new {
 	my $class = shift @_;
 	my %map   = @_;
 	my $self  = {
-		id   => $map{id},
-		name => $map{name},
-		lead => $map{lead}
+		id      => $map{id},
+		name    => $map{name},
+		team    => $map{lead}
 	};
 	bless $self, $class;
 	return $self;
@@ -36,7 +36,7 @@ sub getLead {
 
 sub toString {
 	my $self = shift @_;
-	return Data::Dumper::Dumper($self);
+	Data::Dumper::Dumper($self);
 }
 
 1;
